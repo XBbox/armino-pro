@@ -1,0 +1,6 @@
+config
+build
+sdkconfig
+#sdkconfig.old
+libs
+*.txt

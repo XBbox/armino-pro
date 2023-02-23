@@ -2,25 +2,27 @@
 #include <components/system.h>
 #include <os/os.h>
 #include <components/shell_task.h>
+#include "hal_button.h"
 
-extern void user_app_main(void);
-// extern void rtos_set_user_app_entry(beken_thread_function_t entry);
+
+#define main
+beken_thread_t main_thread_h;
 
 void user_app_main(void){
+    hal_button_thread();
 
+    // 2.create task
+    // bk_err_t err = rtos_create_thread()
 }
 
 int main(void)
 {
-#if (!CONFIG_SLAVE_CORE)
-	// rtos_set_user_app_entry((beken_thread_function_t)user_app_main);
 	// extern int app_main(void);
 	bk_set_printf_sync(true);
 	shell_set_log_level(BK_LOG_WARN);
-#endif
-	legacy_init();
+	// legacy_init();
 
-	app_main();
+	user_app_main();
 
 	return 0;
 }
